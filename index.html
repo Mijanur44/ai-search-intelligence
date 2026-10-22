@@ -1,84 +1,177 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Search Intelligence</title>
-<style>
-*{box-sizing:border-box}
-body{margin:0;background:#0b1020;color:#eef2ff;font-family:Arial,sans-serif}
-header{padding:22px 16px;background:#121a30;border-bottom:1px solid #293653}
-header h1{font-size:22px;margin:0 0 8px;color:#75a7ff}
-header p{margin:0;color:#aab7d0;font-size:13px}
-main{max-width:900px;margin:auto;padding:16px}
-.badge{display:inline-block;background:#173b32;color:#73e2b5;padding:7px 10px;border-radius:20px;font-size:12px;margin:15px 0}
-h2{font-size:18px;margin-top:24px}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.card{background:#141d33;border:1px solid #293653;padding:16px;border-radius:14px}
-.label{font-size:12px;color:#aab7d0}
-.value{font-size:22px;font-weight:bold;margin:12px 0;color:#8ab4ff}
-.note{font-size:12px;color:#aab7d0;line-height:1.6}
-button{background:#477dff;color:white;border:0;padding:12px 15px;border-radius:9px;font-weight:bold;cursor:pointer}
-input{width:100%;padding:13px;background:#0b1020;border:1px solid #394765;color:white;border-radius:9px;margin:8px 0 12px}
-a{color:#8ab4ff}
-footer{text-align:center;color:#8190aa;padding:25px;font-size:12px}
-@media(max-width:380px){.grid{grid-template-columns:1fr}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Search Intelligence</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f1f5f9;
+      color: #172033;
+    }
+    header {
+      background: #102a43;
+      color: white;
+      padding: 24px 16px;
+      text-align: center;
+    }
+    header h1 { margin: 0 0 8px; font-size: 25px; }
+    header p { margin: 0; color: #d9e8f5; }
+    main {
+      max-width: 850px;
+      margin: auto;
+      padding: 18px;
+    }
+    .card {
+      background: white;
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 3px 12px #102a4310;
+    }
+    h2 { margin-top: 0; font-size: 20px; }
+    label {
+      display: block;
+      font-weight: bold;
+      margin: 14px 0 7px;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 13px;
+      border-radius: 8px;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    input, select {
+      border: 1px solid #cbd5e1;
+      background: white;
+    }
+    button {
+      border: 0;
+      background: #087f8c;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .secondary { background: #1764aa; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+    .feature {
+      background: white;
+      padding: 18px;
+      border-radius: 12px;
+      border-left: 4px solid #087f8c;
+    }
+    .feature h3 { margin-top: 0; }
+    .note {
+      background: #fff7d6;
+      padding: 12px;
+      border-radius: 8px;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #64748b;
+      font-size: 13px;
+    }
+  </style>
 </head>
 <body>
-<header>
-<h1>AI Search Intelligence</h1>
-<p>Search Trends & Website Analytics</p>
-</header>
-<main>
-<div class="badge">● Dashboard Preview</div>
-<h2>Overview</h2>
-<div class="grid">
-<div class="card">
-<div class="label">Search Trends</div>
-<div class="value">Explore</div>
-<div class="note">Discover popular search topics.</div>
-</div>
-<div class="card">
-<div class="label">Website Visitors</div>
-<div class="value">Analytics</div>
-<div class="note">Connect your own website analytics.</div>
-</div>
-<div class="card">
-<div class="label">Location Insights</div>
-<div class="value">Global</div>
-<div class="note">Explore public regional search trends.</div>
-</div>
-<div class="card">
-<div class="label">AI Assistant</div>
-<div class="value">Coming soon</div>
-<div class="note">AI-powered reports will be added later.</div>
-</div>
-</div><h2>Explore Google Trends</h2>
-<div class="card">
-<p class="note">Search for a topic to explore public search-interest data.</p>
-<input id="topic" placeholder="Example: Artificial Intelligence">
-<button onclick="searchTrends()">Explore Trends</button>
-<p id="message" class="note"></p>
-</div><h2>Website Analytics</h2>
-<div class="card">
-<p class="note">Track visitors to your own website using Google Analytics. No visitor data is connected yet.</p>
-<a href="https://analytics.google.com/" target="_blank" rel="noopener">Open Google Analytics ↗</a>
-</div><h2>Public Search Trends</h2>
-<div class="card">
-<p class="note">Google Trends shows aggregated search-interest data. It does not reveal an individual's private search history, email address or phone number.</p>
-<a href="https://trends.google.com/trends/" target="_blank" rel="noopener">Open Google Trends ↗</a>
-</div>
-</main>
-<footer>AI Search Intelligence · Version 1.0</footer>
-<script>
-function searchTrends(){
-const topic=document.getElementById('topic').value.trim();
-const message=document.getElementById('message');
-if(!topic){message.textContent='Please enter a topic first.';return;}
-const url='https://trends.google.com/trends/explore?q='+encodeURIComponent(topic);
-message.innerHTML='Opening Google Trends for: '+topic.replace(/[&<>"]/g,'');
-window.open(url,'_blank');
-}
-</script>
+  <header>
+    <h1>AI Search Intelligence</h1>
+    <p>Search Trends & Intelligence Dashboard</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>🔎 Search Trends Explorer</h2>
+      <p>বাংলাদেশ অথবা সারা বিশ্বের সার্চ ট্রেন্ড খুঁজুন।</p>
+
+      <label for="region">Select Region</label>
+      <select id="region">
+        <option value="BD">🇧🇩 Bangladesh</option>
+        <option value="world">🌍 Worldwide</option>
+      </select>
+
+      <label for="topic">Search Topic</label>
+      <input id="topic" type="text"
+        placeholder="যেমন: AI, Cricket, Technology">
+
+      <button onclick="searchTrends()">
+        Explore Search Trends
+      </button>
+
+      <button class="secondary" onclick="openTrending()">
+        Explore Trending Searches
+      </button>
+
+      <p class="note">
+        নোট: এই টুল Google Trends-এর পেজ খুলবে।
+        সার্চের লাইভ তথ্য এখনো সরাসরি এই Dashboard-এ
+        দেখানো হচ্ছে না।
+      </p>
+    </section>
+
+    <h2>📊 Platform Overview</h2>
+    <section class="grid">
+      <div class="feature">
+        <h3>🌐 Search Trends</h3>
+        <p>Google Trends-এ জনপ্রিয় বিষয় অনুসন্ধান করুন।</p>
+      </div>
+      <div class="feature">
+        <h3>👥 Website Visitors</h3>
+        <p>Website Analytics সংযুক্ত করা এখনো বাকি।</p>
+      </div>
+      <div class="feature">
+        <h3>🤖 AI Assistant</h3>
+        <p>AI বিশ্লেষণ ও পরামর্শের সুবিধা ভবিষ্যতে যুক্ত হবে।</p>
+      </div>
+      <div class="feature">
+        <h3>🌍 Region Insights</h3>
+        <p>বাংলাদেশ ও Worldwide অঞ্চল নির্বাচন করুন।</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    AI Search Intelligence | Early Development Version
+  </footer>
+
+  <script>
+    function searchTrends() {
+      const topic = document.getElementById("topic").value.trim();
+      const region = document.getElementById("region").value;
+
+      if (!topic) {
+        alert("Please enter a search topic.");
+        return;
+      }
+
+      const url =
+        "https://trends.google.com/trends/explore?geo=" +
+        encodeURIComponent(region === "world" ? "" : region) +
+        "&q=" + encodeURIComponent(topic);
+
+      window.open(url, "_blank");
+    }
+
+    function openTrending() {
+      const region = document.getElementById("region").value;
+      const geo = region === "world" ? "" : region;
+      const url =
+        "https://trends.google.com/trending?geo=" +
+        encodeURIComponent(geo);
+
+      window.open(url, "_blank");
+    }
+  </script>
 </body>
-  </html>
+</html>
